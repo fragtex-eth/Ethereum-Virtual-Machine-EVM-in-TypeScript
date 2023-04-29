@@ -564,7 +564,7 @@ export default function evm(
                 stack,
                 return: returnValue,
                 memory: memory,
-                storage: Storage
+                storage: evmStorage,
               };
             }
 
@@ -572,8 +572,13 @@ export default function evm(
             if (destination >= code.length || code[destination] !== 0x5b) {
               // Invalid jump destination, clear the stack and return
               stack = [];
-              return { success: false, stack, return: returnValue,memory: memory,
-                storage: Storage };
+              return {
+                success: false,
+                stack,
+                return: returnValue,
+                memory: memory,
+                storage: evmStorage,
+              };
             }
 
             // Update the program counter to jump to the destination
@@ -588,8 +593,13 @@ export default function evm(
               //0x5B = 91 Jumpdest
               if (code[pc + 1] != 91) {
                 stack = [];
-                return { success: false, stack, return: returnValue,memory: memory,
-                storage: Storage };
+                return {
+                  success: false,
+                  stack,
+                  return: returnValue,
+                  memory: memory,
+                  storage: evmStorage,
+                };
               }
               pc++;
             }
@@ -617,8 +627,13 @@ export default function evm(
                 "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
               ),
             ];
-            return { success: true, stack, return: returnValue,memory: memory,
-                storage: Storage };
+            return {
+              success: true,
+              stack,
+              return: returnValue,
+              memory: memory,
+              storage: evmStorage,
+            };
           case 0x5b:
             console.log("Jumpdest");
             console.log(code + " pc: " + pc);
@@ -870,14 +885,24 @@ export default function evm(
             break;
           default:
             stack = [];
-            return { success: false, stack, return: returnValue,memory: memory,
-                storage: Storage };
+            return {
+              success: false,
+              stack,
+              return: returnValue,
+              memory: memory,
+              storage: evmStorage,
+            };
         }
         pc++;
       }
       console.log("now: " + stack)
-      return { success: success, stack, return: returnValue,memory: memory,
-                storage: Storage };
+      return {
+        success: success,
+        stack,
+        return: returnValue,
+        memory: memory,
+        storage: evmStorage,
+      };
     } catch(e) {
       console.log(e)
     }

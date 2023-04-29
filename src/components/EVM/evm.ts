@@ -1,11 +1,15 @@
 import { Buffer } from "buffer";
 
 
-type Result = {
-  success: boolean;
-  stack: any[];
-  return: any;
-} | undefined;
+type Result =
+  | {
+      success: boolean;
+      stack: any[];
+      return: any;
+      memory: any;
+      storage: any;
+    }
+  | undefined;
 
 export default function evm(
   code: Uint8Array,
@@ -17,7 +21,6 @@ export default function evm(
       let pc = 0;
       let returnValue = 0;
       let stack: any[] = [];
-
       let memory = Buffer.alloc(1024);
       let evmStorage: any = {};
 
@@ -556,14 +559,21 @@ export default function evm(
             if (destination % 1 !== 0) {
               // Invalid instruction boundary, clear the stack and return
               stack = [];
-              return { success: false, stack, return: returnValue };
+              return {
+                success: false,
+                stack,
+                return: returnValue,
+                memory: memory,
+                storage: Storage
+              };
             }
 
             // Verify that the destination is a valid jump destination
             if (destination >= code.length || code[destination] !== 0x5b) {
               // Invalid jump destination, clear the stack and return
               stack = [];
-              return { success: false, stack, return: returnValue };
+              return { success: false, stack, return: returnValue,memory: memory,
+                storage: Storage };
             }
 
             // Update the program counter to jump to the destination
@@ -578,7 +588,8 @@ export default function evm(
               //0x5B = 91 Jumpdest
               if (code[pc + 1] != 91) {
                 stack = [];
-                return { success: false, stack, return: returnValue };
+                return { success: false, stack, return: returnValue,memory: memory,
+                storage: Storage };
               }
               pc++;
             }
@@ -606,7 +617,8 @@ export default function evm(
                 "0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF"
               ),
             ];
-            return { success: true, stack, return: returnValue };
+            return { success: true, stack, return: returnValue,memory: memory,
+                storage: Storage };
           case 0x5b:
             console.log("Jumpdest");
             console.log(code + " pc: " + pc);
@@ -858,12 +870,14 @@ export default function evm(
             break;
           default:
             stack = [];
-            return { success: false, stack, return: returnValue };
+            return { success: false, stack, return: returnValue,memory: memory,
+                storage: Storage };
         }
         pc++;
       }
       console.log("now: " + stack)
-      return { success: success, stack, return: returnValue };
+      return { success: success, stack, return: returnValue,memory: memory,
+                storage: Storage };
     } catch(e) {
       console.log(e)
     }

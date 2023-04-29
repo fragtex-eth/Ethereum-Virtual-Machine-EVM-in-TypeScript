@@ -7,7 +7,12 @@ function Output({output} : {output: any}) {
         Memory: {output != null && output.memory ? output.memory : ""}
       </p>
       <p className="storage">
-        Storage: {output != null && output.storage ? output.storage : ""}
+        Storage:{" "}
+        {/* {output != null && output.storage
+          ? output.storage.map((item: any, index: any) => (
+              <p key={index}>{item.toString()}</p>
+            ))
+          : "no storage"} */}
       </p>
       <p className="stack">
         Stack:{" "}

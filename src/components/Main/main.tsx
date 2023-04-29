@@ -14,9 +14,10 @@ function Main() {
   }
 
 
-async function handleChange(e:any) {
+function handleChange(e:any) {
     console.log()
-    let newOutput = await evm(hexStringToUint8Array(e.target.value), "", "", "");
+    console.log(hexStringToUint8Array(e.target.value));
+    let newOutput = evm(hexStringToUint8Array(e.target.value), "", "", "");
     setOutput(newOutput);
     console.log(output);
   }

@@ -1,18 +1,5 @@
 import { Buffer } from "buffer";
-/**
- * EVM From Scratch
- * TypeScript template
- *
- * To work on EVM From Scratch in TypeScript:
- *
- * - Install Node.js: https://nodejs.org/en/download/
- * - Go to the `typescript` directory: `cd typescript`
- * - Install dependencies: `yarn` (or `npm install`)
- * - Edit `evm.ts` (this file!), see TODO below
- * - Run `yarn test` (or `npm test`) to run the tests
- * - Use Jest Watch Mode to run tests when files change: `yarn test --watchAll`
- */
-//const { createHash } = require("crypto-browserify");
+
 
 type Result = {
   success: boolean;
@@ -875,7 +862,7 @@ export default function evm(
         }
         pc++;
       }
-
+      console.log("now: " + stack)
       return { success: success, stack, return: returnValue };
     } catch(e) {
       console.log(e)

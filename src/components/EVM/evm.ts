@@ -22,7 +22,7 @@ export default function evm(
       let returnValue = 0;
       let stack: any[] = [];
       let memory = Buffer.alloc(1024);
-      let evmStorage: any = {};
+      let evmStorage: any = [];
 
       let success = true;
       console.log(code);

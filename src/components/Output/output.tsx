@@ -22,9 +22,11 @@ function Output({output} : {output: any}) {
       </p>
       <p className="storage">
         Storage:
-       {output != null && output.storage
+        {output != null && output.storage
           ? output.storage.map((item: any, index: any) => (
-              <p key={index}>{`0x${index}: 0x${("0".repeat(64) + item.toString(16)).slice(-64)}`}</p>
+              <p key={index}>{`0x${("0" + index).slice(-2)}: 0x${(
+                "0".repeat(64) + item.toString(16)
+              ).slice(-64)}`}</p>
             ))
           : "no storage"}
       </p>
@@ -32,7 +34,11 @@ function Output({output} : {output: any}) {
         Stack:{" "}
         {output != null && output.stack
           ? output.stack.map((item: any, index: any) => (
-              <p key={index}>{item.toString()}</p>
+              <p key={index}>{`0x${("0" + index).slice(
+                -2
+              )} 0x${(
+                "0".repeat(64) + item.toString(16)
+              ).slice(-64)}`}</p>
             ))
           : "no output"}
       </p>

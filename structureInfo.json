@@ -1,0 +1,34 @@
+// Transaction:
+"tx": {
+        "from": "0x1e79b045dc29eae9fdc69673c9dcd7c53e5e159d",
+        "to": "0x1e79b045dc29eae9fdc69673c9dcd7c53e5e159d",
+        "origin": "0x1337",
+        "gasprice": "0x99",
+        "value": "0x1000",
+        "data": "000102030405060708090a0b0c0d0e0f00112233445566778899aabbccddeeff"
+
+    },
+ "block": {
+      "basefee": "0x1",
+      "coinbase": "0x777",
+      "timestamp": "0xe4e1c1",
+      "number": "0x1000001",
+      "difficulty": "0x20000",
+      "gaslimit": "0xffffffffffff",
+      "chainid": "0x1",
+
+    },
+
+"state": {
+      "0x1e79b045dc29eae9fdc69673c9dcd7c53e5e159d": {
+        "balance": "0x100"
+      }
+      "0x1000000000000000000000000000000000000c42": {
+        "balance": "0x100",
+        "code": {
+          "asm": "PUSH1 0x42\nPUSH1 0\nMSTORE\nPUSH1 1\nPUSH1 31\nRETURN",
+          "bin": "60426000526001601ff3"
+        }
+      }
+    },
+

@@ -3,6 +3,8 @@ import Main from './components/Main/main';
 import Output from './components/Output/output';
 import Transaction from './components/Transaction/transaction';
 import Block from './components/Block/block';
+import State from './components/State/state';
+
 import { useState } from 'react';
 
 interface TxState {
@@ -21,6 +23,12 @@ interface BlockState {
   difficulty: string;
   gaslimit: string;
   chainid: string;
+}
+interface AddressData {
+  balance: string;
+  code: {
+    bin: string;
+  };
 }
 
 function App() {
@@ -42,12 +50,17 @@ function App() {
    gaslimit: "",
    chainid: ""
  });
+  const [addresses, setAddresses] = useState<{ [key: string]: AddressData }>(
+    {}
+  );
+
   return (
     <div className="App">
       <Main setOutput={setOutput} />
       <Output output={output} />
       <Transaction tx={tx} setTx={setTx} />
-      <Block block={block} setBlock={setBlock}/>
+      <Block block={block} setBlock={setBlock} />
+      <State addresses={addresses} setAddresses={setAddresses} />
     </div>
   );
 }

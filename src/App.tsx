@@ -56,7 +56,7 @@ function App() {
 
   return (
     <div className="App">
-      <Main setOutput={setOutput} />
+      <Main setOutput={setOutput} tx={tx} block={block} addresses={addresses} />
       <Output output={output} />
       <Transaction tx={tx} setTx={setTx} />
       <Block block={block} setBlock={setBlock} />

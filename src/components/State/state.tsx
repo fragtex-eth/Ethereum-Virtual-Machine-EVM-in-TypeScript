@@ -69,7 +69,7 @@ const State: React.FC<StateProps> = ({ addresses, setAddresses }) => {
               setInputData({ ...inputData, balance: e.target.value })
             }
           />
-          <button className="add" onClick={handleAdd}></button>
+          <button className="add" onClick={handleAdd}>Add</button>
         </div>
         <div className="displayaddress">
           {Object.entries(addresses).map(([key, value], index) => {

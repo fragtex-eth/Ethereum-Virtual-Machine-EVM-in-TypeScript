@@ -1,4 +1,13 @@
 /* 60056005600860055255600560086009608060806088607753 */
+.output{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 24px;
+}
+.component{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 .compOut{
     background: #1C2323;
     border: 1px solid #273132;
@@ -20,6 +29,17 @@
     overflow: auto;
     padding-right: 25px;
 }
+
+.retOut{
+    min-height: 55px;
+    height: auto;
+}
+.containerRet{
+    min-height: 55px;
+    height: auto;
+}
+
+
 .containerOut::-webkit-scrollbar {
   width: 2px;
 }

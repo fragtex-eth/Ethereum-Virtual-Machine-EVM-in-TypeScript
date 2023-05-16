@@ -52,6 +52,11 @@ function Main({ setOutput, tx, block, addresses }: MainProps) {
     <div className="Main">
       <h2>Message</h2>
       <textarea onChange={(e) => handleChange(e)} name="" id=""></textarea>
+      <div className="settings">
+        <button className="btn_state">Transaction</button>
+        <button className="btn_state">Block</button>
+        <button className="btn_state">State</button>
+      </div>
     </div>
   );
 }

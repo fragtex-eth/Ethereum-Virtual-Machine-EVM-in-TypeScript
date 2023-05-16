@@ -52,7 +52,7 @@ function Output({output} : {output: any}) {
             <div className="containerOut">
               {output != null && output.memory
                 ? splitNumber(output.memory)
-                : ""}
+                : "no memory"}
             </div>
           </div>
         </div>
@@ -78,9 +78,14 @@ function Output({output} : {output: any}) {
         </div>
       </div>
 
-      <p className="return">
-        Return: {output != null && output.return ? output.return : ""}
-      </p>
+      <div className="component">
+        <h2 className="">Return</h2>
+        <div className="compOut retOut">
+          <div className="containerOut containerRet">
+            {output != null && output.return ? output.return : "no return"}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

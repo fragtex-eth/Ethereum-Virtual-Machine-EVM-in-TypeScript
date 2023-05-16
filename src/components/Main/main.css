@@ -15,3 +15,18 @@ textarea{
     line-height: 23px;
     word-wrap: break-word;
 }
+.settings{
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.btn_state{
+    all:unset;
+    width: 212px;
+    height: 54px;
+    text-align: center;
+    background: radial-gradient( #75F7FF 0%, #6dc2b8 100%);
+    box-shadow: 0px 4px 30px 10px rgba(9, 11, 11, 0.2);
+    border-radius: 24px;
+    cursor: pointer;
+}

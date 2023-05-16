@@ -56,11 +56,24 @@ function App() {
 
   return (
     <div className="App">
-      <Main setOutput={setOutput} tx={tx} block={block} addresses={addresses} />
-      <Output output={output} />
-      <Transaction tx={tx} setTx={setTx} />
-      <Block block={block} setBlock={setBlock} />
-      <State addresses={addresses} setAddresses={setAddresses} />
+        <Main
+          setOutput={setOutput}
+          tx={tx}
+          block={block}
+          addresses={addresses}
+        />
+        <Output output={output} />
+        <Transaction tx={tx} setTx={setTx} />
+        <Block block={block} setBlock={setBlock} />
+        <State addresses={addresses} setAddresses={setAddresses} />
+      <div className="bg">
+        <div className="glow1"></div>
+        <div className="glow2"></div>
+        <div className="glow3"></div>
+        <div className="glow4"></div>
+        <div className="glow5"></div>
+        <div className="glow6"></div>
+      </div>
     </div>
   );
 }

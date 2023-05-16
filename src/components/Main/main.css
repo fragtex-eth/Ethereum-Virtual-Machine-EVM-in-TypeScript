@@ -1,0 +1,16 @@
+textarea{
+    all:unset;
+    width: 634px;
+    height: 265px;
+    
+    /* EVM/dark-main */
+    background: #1C2323;
+    border: 1px solid #273132;
+    border-radius: 24px;
+    padding: 25px;
+    z-index: 5;
+    color: #8dacacc7;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 18px;
+}

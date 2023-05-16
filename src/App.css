@@ -1,0 +1,71 @@
+.App{
+    position: relative;
+    padding: 50px
+}
+.bg{
+    margin-top: -1100px;
+    position: relative;
+    z-index: -1;
+}
+
+.glow1{
+    position: absolute;
+    background: #01FFF4;
+    opacity:  0.3;
+    width: 320px;
+    height: 298px;
+    z-index: 0;
+    filter: blur(120px);
+    left: 1232px;
+    top: 401px;
+}
+.glow2{
+    position: absolute;
+    width: 311.49px;
+    height: 290.08px;
+    left: 650.54px;
+    top: 0px;
+    background: #01FFF4;
+    opacity: 0.3;
+    filter: blur(120px);
+}
+.glow3{
+    position: absolute;
+    background: #01FFF4;
+    opacity:  0.3;
+    width: 311.49px;
+    height: 290.08px;
+    filter: blur(120px);
+    left: 1032px;
+    top: 981px;
+}
+.glow4{
+    position: absolute;
+    background: #01FFF4;
+    opacity:  0.3;
+    width: 600px;
+    height: 500px;
+    filter: blur(120px);
+    left: 40px;
+    top: 0px;
+}
+.glow5{
+    position: absolute;
+    background: #01FFF4;
+    opacity:  0.3;
+    width: 586.39px;
+    height: 546.08px;
+    filter: blur(120px);
+    left: 200px;
+    top: 700px;
+}
+.glow6{
+    position: absolute;
+    background: #01FFF4;
+    opacity:  0.3;
+    width: 375px;
+    height: 349px;
+    filter: blur(120px);
+    left: 600px;
+    top: 700px;
+}

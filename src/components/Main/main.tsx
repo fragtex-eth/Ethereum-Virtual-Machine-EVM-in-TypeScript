@@ -50,6 +50,7 @@ function Main({ setOutput, tx, block, addresses }: MainProps) {
 
   return (
     <div className="Main">
+      <h2>Message</h2>
       <textarea onChange={(e) => handleChange(e)} name="" id=""></textarea>
     </div>
   );

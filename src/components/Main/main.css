@@ -12,5 +12,6 @@ textarea{
     color: #8dacacc7;
     font-weight: 300;
     font-size: 20px;
-    line-height: 18px;
+    line-height: 23px;
+    word-wrap: break-word;
 }

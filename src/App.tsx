@@ -56,6 +56,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="container">
         <Main
           setOutput={setOutput}
           tx={tx}
@@ -63,9 +64,10 @@ function App() {
           addresses={addresses}
         />
         <Output output={output} />
-        <Transaction tx={tx} setTx={setTx} />
+      </div>
+      {/* <Transaction tx={tx} setTx={setTx} />
         <Block block={block} setBlock={setBlock} />
-        <State addresses={addresses} setAddresses={setAddresses} />
+        <State addresses={addresses} setAddresses={setAddresses} /> */}
       <div className="bg">
         <div className="glow1"></div>
         <div className="glow2"></div>

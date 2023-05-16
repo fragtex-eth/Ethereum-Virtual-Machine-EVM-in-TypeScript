@@ -1,7 +1,12 @@
+
 .App{
     position: relative;
     padding: 50px
 }
+.container{
+    display: flex;
+}
+/* Mainarea */
 .bg{
     margin-top: -1100px;
     position: relative;

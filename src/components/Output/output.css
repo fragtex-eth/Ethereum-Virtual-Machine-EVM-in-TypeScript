@@ -1,0 +1,40 @@
+/* 60056005600860055255600560086009608060806088607753 */
+.compOut{
+    background: #1C2323;
+    border: 1px solid #273132;
+    width: 330px;
+    height: 275px;
+    border-radius: 24px;
+    padding:20px
+}
+
+.containerOut{
+    margin-top: -10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #8dacacef;
+    font-size: 17px;
+    font-weight: 200;
+    width: 315px;
+    height: 275px;
+    overflow: auto;
+    padding-right: 25px;
+}
+.containerOut::-webkit-scrollbar {
+  width: 2px;
+}
+.containerOut::-webkit-scrollbar-thumb {
+  background:#01FFF4;
+  border-radius: 24px;
+}
+
+.compElement{
+    display: flex;
+}
+.firstRow{
+    width: 50px !important;
+}
+p{
+    word-break: break-all;
+    margin-top: 0;
+}

@@ -1,0 +1,86 @@
+.setParameters{
+    position: absolute;
+    min-height: 100%;
+    width: 100%;
+    z-index: 2;
+}
+.row{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.sContainer{
+    padding-left: 150px;
+    padding-right: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 150px;
+}
+.singleitem{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+.singleitem span{
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+    color: #BAFFFD;
+    margin-bottom: 10px;
+}
+.singleitem input{
+    all: unset;
+    background: #1C2323;
+    border: 1px solid #273132;
+    border-radius: 24px;
+    width: 465px;
+    height: 54px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height, or 129% */
+    /* EVM/text-light */
+    color: #8DACAC;
+}
+.circle{
+    position: absolute;
+    width: 928px;
+    height: 928px;
+
+    /* EVM/dark-main */
+
+    background: #1C2323;
+    z-index: 0;
+    border-radius: 50%;
+    margin-top: -500px;
+    margin-left: -450px;
+
+}
+.buttoncontainer{
+    margin-top: 50px;
+    width: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 150px;
+}
+.btn_done{
+    all:unset;
+    width: 212px;
+    height: 54px;
+    text-align: center;
+    background: radial-gradient( #75F7FF 0%, #6dc2b8 100%);
+    box-shadow: 0px 4px 30px 10px rgba(9, 11, 11, 0.2);
+    border-radius: 24px;
+    cursor: pointer;
+    margin-left: auto;
+}

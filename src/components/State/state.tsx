@@ -46,6 +46,13 @@ const State: React.FC<StateProps> = ({
     console.log(addresses);
   };
 
+  const handleRemove = (keyToRemove: string) => {
+    const newAddresses = { ...addresses };
+    delete newAddresses[keyToRemove];
+    setAddresses(newAddresses);
+  };
+
+
   return (
     <div className="setParameters">
       <div className="circle"></div>
@@ -107,7 +114,7 @@ const State: React.FC<StateProps> = ({
                   <div className="buttoncontainer buttonremove">
                     <button
                       className="btn_done"
-                      onClick={() => setAddressesVis(false)}
+                      onClick={() => handleRemove(key)}
                     >
                       Remove
                     </button>

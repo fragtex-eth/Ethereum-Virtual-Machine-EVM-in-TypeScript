@@ -58,6 +58,14 @@ function App() {
   const [addressesVis, setAddressesVis] = useState(false);
   return (
     <div className="App">
+      <div className="bg">
+        <div className="glow1"></div>
+        <div className="glow2"></div>
+        <div className="glow3"></div>
+        <div className="glow4"></div>
+        <div className="glow5"></div>
+        <div className="glow6"></div>
+      </div>
       {txVis || blockVis || addressesVis ? (
         ""
       ) : (
@@ -92,14 +100,6 @@ function App() {
       ) : (
         ""
       )}
-      <div className="bg">
-        <div className="glow1"></div>
-        <div className="glow2"></div>
-        <div className="glow3"></div>
-        <div className="glow4"></div>
-        <div className="glow5"></div>
-        <div className="glow6"></div>
-      </div>
     </div>
   );
 }

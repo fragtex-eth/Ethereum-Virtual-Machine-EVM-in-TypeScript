@@ -4,6 +4,7 @@ import Output from './components/Output/output';
 import Transaction from './components/Transaction/transaction';
 import Block from './components/Block/block';
 import State from './components/State/state';
+import Opcodes from './components/Opcodes/opcodes';
 
 import { useState } from 'react';
 
@@ -69,17 +70,20 @@ function App() {
       {txVis || blockVis || addressesVis ? (
         ""
       ) : (
-        <div className="container">
-          <Main
-            setOutput={setOutput}
-            tx={tx}
-            setTxVis={setTxVis}
-            setBlockVis={setBlockVis}
-            setAddressesVis={setAddressesVis}
-            block={block}
-            addresses={addresses}
-          />
-          <Output output={output} />
+        <div className="mainsection">
+          <div className="container">
+            <Main
+              setOutput={setOutput}
+              tx={tx}
+              setTxVis={setTxVis}
+              setBlockVis={setBlockVis}
+              setAddressesVis={setAddressesVis}
+              block={block}
+              addresses={addresses}
+            />
+            <Output output={output} />
+          </div>
+          <Opcodes />
         </div>
       )}
       {/* <Transaction tx={tx} setTx={setTx} />

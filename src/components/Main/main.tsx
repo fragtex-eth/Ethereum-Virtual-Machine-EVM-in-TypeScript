@@ -29,12 +29,15 @@ interface AddressData {
 interface MainProps {
   setOutput: (output: any) => void;
   tx: TxState;
+  setTxVis: (output: any) => void;
+  setBlockVis: (output: any) => void;
+  setAddressesVis: (output: any) => void;
   block: BlockState;
   addresses: { [key: string]: AddressData };
 }
 
 //@note what is the correct line
-function Main({ setOutput, tx, block, addresses }: MainProps) {
+function Main({ setOutput, tx, setTxVis, setBlockVis, setAddressesVis, block, addresses }: MainProps) {
   function hexStringToUint8Array(hexString: string) {
     return new Uint8Array(
       (hexString?.match(/../g) || []).map((byte) => parseInt(byte, 16))
@@ -53,9 +56,15 @@ function Main({ setOutput, tx, block, addresses }: MainProps) {
       <h2>Message</h2>
       <textarea onChange={(e) => handleChange(e)} name="" id=""></textarea>
       <div className="settings">
-        <button className="btn_state">Transaction</button>
-        <button className="btn_state">Block</button>
-        <button className="btn_state">State</button>
+        <button className="btn_state" onClick={() => setTxVis(true)}>
+          Transaction
+        </button>
+        <button className="btn_state" onClick={() => setBlockVis(true)}>
+          Block
+        </button>
+        <button className="btn_state" onClick={() => setAddressesVis(true)}>
+          State
+        </button>
       </div>
     </div>
   );

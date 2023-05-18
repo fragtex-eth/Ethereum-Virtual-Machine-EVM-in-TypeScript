@@ -1,0 +1,36 @@
+.stateInput{
+    margin-bottom: 7px !important;
+}
+.stateInputFixed{
+    all: unset;
+    background: #1C2323;
+    border: 1px solid #273132;
+    border-radius: 24px;
+    width: 465px;
+    height: 54px;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-style: normal;
+    font-weight: 300 !important; 
+    font-size: 14px !important;
+    line-height: 18px !important;
+    /* identical to box height, or 129% */
+    /* EVM/text-light */
+    color: #8DACAC;
+    display: flex;
+    align-items: center;
+
+}
+.sIDisplay{
+    margin-top: 0px;
+    margin-bottom: 10px;
+    
+    
+}
+.stateInside{
+    margin-left: 100px !important;
+    width: 365px !important;
+}
+.buttonremove{
+    margin-top: 0px;
+}

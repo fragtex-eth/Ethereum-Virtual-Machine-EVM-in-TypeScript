@@ -1,4 +1,6 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { IconContext } from "react-icons";
+import { IoClose } from "react-icons/io5";
 
 import "./transaction.css";
 
@@ -11,12 +13,14 @@ interface TxState {
   data: string;
 }
 
+
 interface TransactionProps {
   tx: TxState;
   setTx: Dispatch<SetStateAction<TxState>>;
+  setTxVis: Dispatch<SetStateAction<boolean>>;
 }
 
-const Transaction: React.FC<TransactionProps> = ({ tx, setTx }) => {
+const Transaction: React.FC<TransactionProps> = ({ tx, setTx, setTxVis }) => {
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     field: keyof TxState
@@ -31,6 +35,11 @@ const Transaction: React.FC<TransactionProps> = ({ tx, setTx }) => {
   return (
     <div className="setParameters">
       <div className="circle"></div>
+      <IconContext.Provider value={{ className: "icon-close" }}>
+        <div className="icon_container" onClick={() => setTxVis(false)}>
+          <IoClose />
+        </div>
+      </IconContext.Provider>
       <h3>Transaction</h3>
       <div className="sContainer">
         <div className="row">
@@ -93,7 +102,9 @@ const Transaction: React.FC<TransactionProps> = ({ tx, setTx }) => {
         </div>
       </div>
       <div className="buttoncontainer">
-        <button className="btn_done">Done</button>
+        <button className="btn_done" onClick={() => setTxVis(false)}>
+          Done
+        </button>
       </div>
     </div>
   );

@@ -41,34 +41,57 @@ function App() {
     value: "",
     data: "",
   });
- const [block, setBlock] = useState<BlockState>({
-   basefee: "",
-   coinbase: "",
-   timestamp: "",
-   number: "",
-   difficulty: "",
-   gaslimit: "",
-   chainid: ""
- });
+  const [block, setBlock] = useState<BlockState>({
+    basefee: "",
+    coinbase: "",
+    timestamp: "",
+    number: "",
+    difficulty: "",
+    gaslimit: "",
+    chainid: ""
+  });
   const [addresses, setAddresses] = useState<{ [key: string]: AddressData }>(
     {}
   );
-
+  const [txVis, setTxVis] = useState(false);
+  const [blockVis, setBlockVis] = useState(false);
+  const [addressesVis, setAddressesVis] = useState(false);
   return (
     <div className="App">
-      {/* <div className="container">
-        <Main
-          setOutput={setOutput}
-          tx={tx}
-          block={block}
-          addresses={addresses}
-        />
-        <Output output={output} />
-      </div> */}
+      {txVis || blockVis || addressesVis ? (
+        ""
+      ) : (
+        <div className="container">
+          <Main
+            setOutput={setOutput}
+            tx={tx}
+            setTxVis={setTxVis}
+            setBlockVis={setBlockVis}
+            setAddressesVis={setAddressesVis}
+            block={block}
+            addresses={addresses}
+          />
+          <Output output={output} />
+        </div>
+      )}
       {/* <Transaction tx={tx} setTx={setTx} />
         <Block block={block} setBlock={setBlock} />
         <State addresses={addresses} setAddresses={setAddresses} /> */}
-      <Transaction tx={tx} setTx={setTx} />
+      {txVis ? <Transaction tx={tx} setTx={setTx} setTxVis={setTxVis} /> : ""}
+      {blockVis ? (
+        <Block block={block} setBlock={setBlock} setBlockVis={setBlockVis} />
+      ) : (
+        ""
+      )}
+      {addressesVis ? (
+        <State
+          addresses={addresses}
+          setAddresses={setAddresses}
+          setAddressesVis={setAddressesVis}
+        />
+      ) : (
+        ""
+      )}
       <div className="bg">
         <div className="glow1"></div>
         <div className="glow2"></div>

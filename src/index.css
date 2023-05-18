@@ -5,17 +5,15 @@ body{
     monospace;
     margin: 0;
     overflow-x: hidden;
-    min-height: 100%;
+
 }
 #root{
-      max-width: 1920px;
+    max-width: 1920px;
     margin-left: auto;
     margin-right: auto;
     display: static;
 }
-html{
-  min-height: 100%;  
-}
+
 
 h2{
     font-style: normal;
@@ -27,8 +25,7 @@ h2{
 }
 h3{
     position: relative;
-    margin-left: 150px;
-    margin-top: 50px;
+    margin-top: 0px;
     font-style: normal;
     font-weight: 800;
     font-size: 96px;

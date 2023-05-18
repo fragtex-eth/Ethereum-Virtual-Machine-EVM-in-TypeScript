@@ -1,4 +1,7 @@
 import React, { useState, Dispatch, SetStateAction } from "react";
+import { IconContext } from "react-icons";
+import { IoClose } from "react-icons/io5";
+
 import "./state.css";
 
 interface AddressData {
@@ -17,13 +20,18 @@ interface InputData {
 interface StateProps {
   addresses: { [key: string]: AddressData };
   setAddresses: Dispatch<SetStateAction<{ [key: string]: AddressData }>>;
+  setAddressesVis: Dispatch<SetStateAction<boolean>>;
 }
 
-const State: React.FC<StateProps> = ({ addresses, setAddresses }) => {
+const State: React.FC<StateProps> = ({
+  addresses,
+  setAddresses,
+  setAddressesVis,
+}) => {
   const [inputData, setInputData] = useState<InputData>({
     address: "",
-    code: "",
-    balance: "",
+    code: "Code",
+    balance: "Balance",
   });
 
   const handleAdd = () => {
@@ -39,50 +47,81 @@ const State: React.FC<StateProps> = ({ addresses, setAddresses }) => {
   };
 
   return (
-    <div className="State">
-      <div className="statecontainer">
-        <div className="addaddress">
-          <span className="from">address</span>
-          <input
-            type="text"
-            className="address"
-            value={inputData.address}
-            onChange={(e) =>
-              setInputData({ ...inputData, address: e.target.value })
-            }
-          />
-          <span className="from">code</span>
-          <input
-            type="text"
-            className="code"
-            value={inputData.code}
-            onChange={(e) =>
-              setInputData({ ...inputData, code: e.target.value })
-            }
-          />
-          <span className="from">balance</span>
-          <input
-            type="text"
-            className="balance"
-            value={inputData.balance}
-            onChange={(e) =>
-              setInputData({ ...inputData, balance: e.target.value })
-            }
-          />
-          <button className="add" onClick={handleAdd}>Add</button>
+    <div className="setParameters">
+      <div className="circle"></div>
+      <IconContext.Provider value={{ className: "icon-close" }}>
+        <div className="icon_container" onClick={() => setAddressesVis(false)}>
+          <IoClose />
         </div>
-        <div className="displayaddress">
-          {Object.entries(addresses).map(([key, value], index) => {
-            const item = value as AddressData;
-            return (
-              <div className="singleaddress" key={index}>
-                <span className="address">{key}</span>{" "}
-                <span className="balance">{item.balance}</span>{" "}
-                {item.code.bin && <span className="code">{item.code.bin}</span>}
-              </div>
-            );
-          })}
+      </IconContext.Provider>
+      <h3>State</h3>
+
+      <div className="sContainer">
+        <div className="row">
+          <div className="singleitem">
+            <span className="from">Address:</span>
+            <input
+              type="text"
+              className="stateInput"
+              value={inputData.address}
+              onChange={(e) =>
+                setInputData({ ...inputData, address: e.target.value })
+              }
+            />
+
+            <input
+              type="text"
+              className="stateInput stateInside"
+              value={inputData.code}
+              onChange={(e) =>
+                setInputData({ ...inputData, code: e.target.value })
+              }
+            />
+            <input
+              type="text"
+              className="stateInput stateInside"
+              value={inputData.balance}
+              onChange={(e) =>
+                setInputData({ ...inputData, balance: e.target.value })
+              }
+            />
+            <button className="btn_done" onClick={handleAdd}>
+              Add
+            </button>
+          </div>
+
+          <div className="singleitem sIDisplay">
+            {Object.entries(addresses).map(([key, value], index) => {
+              const item = value as AddressData;
+              return (
+                <div className="singleitem" key={index}>
+                  <span className="stateInputFixed">{key}</span>{" "}
+                  <span className="stateInputFixed stateInside">
+                    {item.balance}
+                  </span>{" "}
+                  {item.code.bin && (
+                    <span className="stateInputFixed stateInside">
+                      {item.code.bin}
+                    </span>
+                  )}
+                  <div className="buttoncontainer buttonremove">
+                    <button
+                      className="btn_done"
+                      onClick={() => setAddressesVis(false)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
+      </div>
+      <div className="buttoncontainer buttoncontainer3">
+        <button className="btn_done" onClick={() => setAddressesVis(false)}>
+          Done
+        </button>
       </div>
     </div>
   );

@@ -1,8 +1,28 @@
 .setParameters{
-    position: absolute;
+    box-sizing: border-box;
+    position: relative;
     min-height: 100%;
     width: 100%;
     z-index: 2;
+   
+}
+.icon-close{
+    position: relative;
+    color: #01FFF4;
+    font-size: 45px;
+    z-index: 1;
+    background: #161E1D;        
+    box-shadow: 0px 4px 50px rgba(1, 255, 244, 0.08);
+    padding: 8px;
+    border-radius: 20%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.icon_container{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
 }
 .row{
     display: flex;
@@ -11,11 +31,10 @@
     margin-right: 30px;
 }
 .sContainer{
-    padding-left: 150px;
-    padding-right: 150px;
+
     display: flex;
     flex-direction: row;
-    align-items: center;
+
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
@@ -52,6 +71,8 @@
     /* EVM/text-light */
     color: #8DACAC;
 }
+
+
 .circle{
     position: absolute;
     width: 928px;
@@ -62,8 +83,8 @@
     background: #1C2323;
     z-index: 0;
     border-radius: 50%;
-    margin-top: -500px;
-    margin-left: -450px;
+    margin-top: -550px;
+    margin-left: -590px;
 
 }
 .buttoncontainer{
@@ -71,7 +92,7 @@
     width: auto;
     display: flex;
     justify-content: flex-end;
-    padding-right: 150px;
+
 }
 .btn_done{
     all:unset;

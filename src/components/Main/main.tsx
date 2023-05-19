@@ -1,6 +1,6 @@
 import "./main.css";
 import evm from "../EVM/evm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface TxState {
   from: string;
@@ -51,10 +51,27 @@ function Main({ setOutput, tx, setTxVis, setBlockVis, setAddressesVis, block, ad
     setOutput(newOutput);
   }
 
+    useEffect(() => {
+      setOutput(
+        evm(
+        hexStringToUint8Array(
+          "60056005600860055255600560086009608060806088607753"
+        ),
+        "",
+        "",
+        "")
+      );
+    },[]);
+
   return (
     <div className="Main">
       <h2>Message</h2>
-      <textarea onChange={(e) => handleChange(e)} name="" id=""></textarea>
+      <textarea
+        onChange={(e) => handleChange(e)}
+        name=""
+        id=""
+        placeholder="60056005600860055255600560086009608060806088607753"
+      ></textarea>
       <div className="settings">
         <button className="btn_state" onClick={() => setTxVis(true)}>
           Transaction

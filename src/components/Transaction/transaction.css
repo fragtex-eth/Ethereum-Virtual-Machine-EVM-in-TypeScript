@@ -31,7 +31,8 @@
     margin-right: 30px;
 }
 .sContainer{
-
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: row;
 

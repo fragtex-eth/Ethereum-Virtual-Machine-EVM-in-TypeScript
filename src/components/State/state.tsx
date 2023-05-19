@@ -30,21 +30,41 @@ const State: React.FC<StateProps> = ({
 }) => {
   const [inputData, setInputData] = useState<InputData>({
     address: "",
-    code: "Code",
-    balance: "Balance",
+    code: "",
+    balance: "",
   });
 
-  const handleAdd = () => {
-    setAddresses((prevState) => ({
-      ...prevState,
-      [inputData.address]: {
-        balance: inputData.balance,
-        code: { bin: inputData.code },
-      },
-    }));
-    setInputData({ address: "", code: "", balance: "" });
-    console.log(addresses);
-  };
+ const handleAdd = () => {
+   // Ethereum address validation
+   const addressValidation = /^0x[a-fA-F0-9]{40}$/;
+   if (!addressValidation.test(inputData.address)) {
+     alert("Address should be 42 characters long and start with 0x");
+     return;
+   }
+   // Balance validation
+   if (isNaN(parseFloat(inputData.balance))) {
+     alert("Balance should be a valid number");
+     return;
+   }
+   // Code validation
+   const codeValidation = /^[a-zA-Z0-9]*$/;
+   if (!codeValidation.test(inputData.code)) {
+     alert("Code should only contain letters and numbers");
+     return;
+   }
+
+   // All validations passed, add address to the state
+   setAddresses((prevState) => ({
+     ...prevState,
+     [inputData.address]: {
+       balance: inputData.balance,
+       code: { bin: inputData.code },
+     },
+   }));
+   setInputData({ address: "", code: "", balance: "" });
+   console.log(addresses);
+ };
+
 
   const handleRemove = (keyToRemove: string) => {
     const newAddresses = { ...addresses };
@@ -69,6 +89,7 @@ const State: React.FC<StateProps> = ({
             <span className="from">Address:</span>
             <input
               type="text"
+              placeholder="0x0000000000000000000000000000000000000000"
               className="stateInput"
               value={inputData.address}
               onChange={(e) =>
@@ -78,6 +99,7 @@ const State: React.FC<StateProps> = ({
 
             <input
               type="text"
+              placeholder="6001606052"
               className="stateInput stateInside"
               value={inputData.code}
               onChange={(e) =>
@@ -86,6 +108,7 @@ const State: React.FC<StateProps> = ({
             />
             <input
               type="text"
+              placeholder="100000000"
               className="stateInput stateInside"
               value={inputData.balance}
               onChange={(e) =>

@@ -54,7 +54,6 @@ function Opcodes() {
       <div className="opcodescontainer">
         <AliceCarousel
           items={items}
-          ref={carousel as any}
           infinite={true}
           autoWidth={true}
           disableButtonsControls

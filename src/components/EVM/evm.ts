@@ -43,21 +43,21 @@ export default function evm(
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x02:
             mem = overflow(stack[0] * stack[1]);
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x03:
             mem = overflow(stack[0] - stack[1]);
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x04:
             //Allows Division by zero
@@ -69,7 +69,7 @@ export default function evm(
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x05:
             if (stack[1].toString() === "0" || stack[0].toString() === "0") {
@@ -79,11 +79,11 @@ export default function evm(
               let decimalValue2 = twoComplementF(stack[1]);
               mem = overflow(decimalValue / decimalValue2);
             }
-
+            pc--;
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+          
             break;
           case 0x06:
             //Allows Division by zero
@@ -95,7 +95,7 @@ export default function evm(
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x07:
             if (stack[1].toString() === "0" || stack[0].toString() === "0") {
@@ -104,13 +104,13 @@ export default function evm(
               let decimalValue = twoComplementF(stack[0]);
               let decimalValue2 = twoComplementF(stack[1]);
               mem = overflow(decimalValue % decimalValue2);
-
+              
               // Check if MSB is 1
             }
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+            pc--;
             break;
           case 0x08:
             mem = overflow(stack[0] + stack[1]);
@@ -144,7 +144,7 @@ export default function evm(
             stack.shift();
             stack.shift();
             stack.unshift(mem);
-            pc++;
+         
             break;
           case 0x0b:
             //if number >= 128 add fff

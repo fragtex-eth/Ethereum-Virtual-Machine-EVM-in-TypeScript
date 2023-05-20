@@ -40,3 +40,9 @@ textarea{
     cursor: pointer;
     margin-bottom: 15px;
 }
+@media screen and (max-width: 400px) {
+    .Main{
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

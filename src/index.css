@@ -29,7 +29,7 @@ h3{
     margin-top: 0px;
     font-style: normal;
     font-weight: 800;
-    font-size: 96px;
+    font-size: clamp(20px,20px + 5vw ,96px);
     line-height: 116px;
     color: #BAFFFD;
 }

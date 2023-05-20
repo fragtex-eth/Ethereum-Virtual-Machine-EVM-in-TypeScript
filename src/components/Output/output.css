@@ -43,8 +43,6 @@
     height: auto;
    
 }
-
-
 .containerOut::-webkit-scrollbar {
   width: 2px;
 }
@@ -62,4 +60,14 @@
 p{
     word-break: break-all;
     margin-top: 0;
+}
+@media screen and (max-width: 400px) {
+
+    .component{
+        flex: auto;
+    }
+
+    .compOut{
+        min-width:auto;
+    }
 }

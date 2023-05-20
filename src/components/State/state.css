@@ -34,3 +34,24 @@
 .buttonremove{
     margin-top: 0px;
 }
+.stateInputfixed{
+    width: 465px !important;
+}
+
+@media screen and (max-width: 600px) {
+    .stateInside{
+        margin-left: 0 !important;
+        width: 100px !important;
+        
+    }
+    .stateInputfixed{
+        width: clamp(230px, 150px + 30vw ,350px)!important;
+    }
+    .stateInputFixed {
+        width: clamp(230px, 150px + 30vw ,350px)!important;
+        overflow: hidden;
+    }
+    .btn_done{
+        margin-top: 5px;
+    }
+}

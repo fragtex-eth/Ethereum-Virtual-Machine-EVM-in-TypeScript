@@ -90,7 +90,7 @@ const State: React.FC<StateProps> = ({
             <input
               type="text"
               placeholder="0x0000000000000000000000000000000000000000"
-              className="stateInput"
+              className="stateInput stateInputfixed"
               value={inputData.address}
               onChange={(e) =>
                 setInputData({ ...inputData, address: e.target.value })

@@ -1,73 +1,48 @@
-import "./main.css";
+import React, { ChangeEvent, useEffect } from "react";
 import evm from "../EVM/evm";
-import { useEffect, useState } from "react";
+import { MainProps } from "../types";
+import "./main.css";
 
-interface TxState {
-  from: string;
-  to: string;
-  origin: string;
-  gasprice: string;
-  value: string;
-  data: string;
-}
-interface BlockState {
-  basefee: string;
-  coinbase: string;
-  timestamp: string;
-  number: string;
-  difficulty: string;
-  gaslimit: string;
-  chainid: string;
-}
-interface AddressData {
-  balance: string;
-  code: {
-    bin: string;
-  };
-}
-
-interface MainProps {
-  setOutput: (output: any) => void;
-  tx: TxState;
-  setTxVis: (output: any) => void;
-  setBlockVis: (output: any) => void;
-  setAddressesVis: (output: any) => void;
-  block: BlockState;
-  addresses: { [key: string]: AddressData };
-}
-
-//@note what is the correct line
-function Main({ setOutput, tx, setTxVis, setBlockVis, setAddressesVis, block, addresses }: MainProps) {
-  function hexStringToUint8Array(hexString: string) {
+const Main: React.FC<MainProps> = ({
+  setOutput,
+  tx,
+  setTxVis,
+  setBlockVis,
+  setAddressesVis,
+  block,
+  addresses,
+}) => {
+  const hexStringToUint8Array = (hexString: string): Uint8Array => {
     return new Uint8Array(
       (hexString?.match(/../g) || []).map((byte) => parseInt(byte, 16))
     );
-  }
+  };
 
-  function handleChange(e: any) {
-    let input = hexStringToUint8Array(e.target.value);
-    let newOutput = evm(input, tx, block, addresses);
+  const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const input = hexStringToUint8Array(e.target.value);
+    const newOutput = evm(input, tx, block, addresses);
     console.log(newOutput);
     setOutput(newOutput);
-  }
+  };
 
-    useEffect(() => {
-      setOutput(
-        evm(
+  useEffect(() => {
+    setOutput(
+      evm(
         hexStringToUint8Array(
           "60056005600860055255600560086009608060806088607753"
         ),
-        "",
-        "",
-        "")
-      );
-    },[]);
+        tx,
+        block,
+        addresses
+      )
+    );
+  }, []); 
 
   return (
     <div className="Main">
       <h2>Message</h2>
       <textarea
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
         name=""
         id=""
         placeholder="60056005600860055255600560086009608060806088607753"
@@ -85,6 +60,6 @@ function Main({ setOutput, tx, setTxVis, setBlockVis, setAddressesVis, block, ad
       </div>
     </div>
   );
-}
+};
 
 export default Main;

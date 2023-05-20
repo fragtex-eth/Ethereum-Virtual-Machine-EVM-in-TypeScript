@@ -1,46 +1,45 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import "./opcodes.css";
 import opcodes from "./opcodes.json";
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
 import { IconContext } from "react-icons";
 import { IoSearchSharp } from "react-icons/io5";
-
-interface Opcode {
-  uint8: string;
-  mnemonic: string;
-  description: string;
-}
+import { Opcode } from "../types";
 
 function Opcodes() {
   const [searchText, setSearchText] = useState("");
   const carousel = useRef<AliceCarousel | null>(null);
 
-  const filteredOpcodes: Opcode[] = opcodes.filter(
-    (opcode: Opcode) =>
-      opcode.uint8.toLowerCase().includes(searchText.toLowerCase()) ||
-      opcode.mnemonic.toLowerCase().includes(searchText.toLowerCase()) ||
-      opcode.description.toLowerCase().includes(searchText.toLowerCase())
+  const filteredOpcodes: Opcode[] = useMemo(
+    () =>
+      opcodes.filter(
+        (opcode: Opcode) =>
+          opcode.uint8.toLowerCase().includes(searchText.toLowerCase()) ||
+          opcode.mnemonic.toLowerCase().includes(searchText.toLowerCase()) ||
+          opcode.description.toLowerCase().includes(searchText.toLowerCase())
+      ),
+    [searchText]
   );
 
   const handleOnDragStart = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     e.preventDefault();
 
-  const items = filteredOpcodes.map((opcode: Opcode) => (
-    <div className="singleopcontainer">
-      <div
-        className="singleopcode"
-        key={opcode.uint8}
-        onDragStart={handleOnDragStart}
-      >
-        <div className="title">
-          <span className="uint8">{opcode.uint8}</span>
-          <span className="name">{" " + opcode.mnemonic}</span>
+  const items = useMemo(
+    () =>
+      filteredOpcodes.map((opcode: Opcode) => (
+        <div className="singleopcontainer" key={opcode.uint8}>
+          <div className="singleopcode" onDragStart={handleOnDragStart}>
+            <div className="title">
+              <span className="uint8">{opcode.uint8}</span>
+              <span className="name">{" " + opcode.mnemonic}</span>
+            </div>
+            <span className="description">{opcode.description}</span>
+          </div>
         </div>
-        <span className="description">{opcode.description}</span>
-      </div>
-    </div>
-  ));
+      )),
+    [filteredOpcodes, handleOnDragStart]
+  );
 
   // Slide to the middle index after the component has mounted
   useEffect(() => {
@@ -59,7 +58,7 @@ function Opcodes() {
           disableButtonsControls
           disableDotsControls
           mouseTracking
-
+          ref={carousel}
         />
       </div>
       <div className="searchContainer">

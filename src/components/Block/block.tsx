@@ -1,40 +1,31 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import { IconContext } from "react-icons";
 import { IoClose } from "react-icons/io5";
-
+import { BlockState, TransactionProps } from "../types";
 import "./block.css";
-
-interface BlockState {
-  basefee: string;
-  coinbase: string;
-  timestamp: string;
-  number: string;
-  difficulty: string;
-  gaslimit: string;
-  chainid: string;
-}
-
-interface TransactionProps {
-  block: BlockState;
-  setBlock: Dispatch<SetStateAction<BlockState>>;
-  setBlockVis: Dispatch<SetStateAction<boolean>>;
-}
 
 const Block: React.FC<TransactionProps> = ({
   block,
   setBlock,
   setBlockVis,
 }) => {
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    field: keyof BlockState
-  ) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const field = event.target.name as keyof BlockState;
     setBlock({
       ...block,
       [field]: event.target.value,
     });
-    console.log(block);
   };
+
+  const fieldNames = [
+    { name: "basefee", displayName: "Basefee" },
+    { name: "coinbase", displayName: "Coinbase" },
+    { name: "timestamp", displayName: "Timestamp" },
+    { name: "number", displayName: "Number" },
+    { name: "difficulty", displayName: "Difficulty" },
+    { name: "gaslimit", displayName: "Gaslimit" },
+    { name: "chainid", displayName: "Chainid" },
+  ];
 
   return (
     <div className="setParameters">
@@ -46,76 +37,20 @@ const Block: React.FC<TransactionProps> = ({
       </IconContext.Provider>
       <h3>Block</h3>
       <div className="sContainer">
-        <div className="row">
-          <div className="singleitem">
-            <span className="basefee">Basefee:</span>
-            <input
-              type="text"
-              className="basefee"
-              value={block.basefee}
-              onChange={(event) => handleInputChange(event, "basefee")}
-            />
+        {fieldNames.map((field, index) => (
+          <div key={index} className="row">
+            <div className="singleitem">
+              <span className={field.name}>{field.displayName}:</span>
+              <input
+                type="text"
+                name={field.name}
+                className={field.name}
+                value={block[field.name as keyof BlockState]}
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
-
-          <div className="singleitem">
-            <span className="coinbase">Coinbase:</span>
-            <input
-              type="text"
-              className="coinbase"
-              value={block.coinbase}
-              onChange={(event) => handleInputChange(event, "coinbase")}
-            />
-          </div>
-          <div className="singleitem">
-            <span className="timestamp">Timestamp:</span>
-            <input
-              type="text"
-              className="timestamp"
-              value={block.timestamp}
-              onChange={(event) => handleInputChange(event, "timestamp")}
-            />
-          </div>
-
-          <div className="singleitem">
-            <span className="number">Number:</span>
-            <input
-              type="text"
-              className="number"
-              value={block.number}
-              onChange={(event) => handleInputChange(event, "number")}
-            />
-          </div>
-        </div>
-        <div className="row">
-          <div className="singleitem">
-            <span className="difficulty">Difficulty:</span>
-            <input
-              type="text"
-              className="difficulty"
-              value={block.difficulty}
-              onChange={(event) => handleInputChange(event, "difficulty")}
-            />
-          </div>
-          <div className="singleitem">
-            <span className="gaslimit">Gaslimit:</span>
-            <input
-              type="text"
-              className="gaslimit"
-              value={block.gaslimit}
-              onChange={(event) => handleInputChange(event, "gaslimit")}
-            />
-          </div>
-
-          <div className="singleitem">
-            <span className="chainid">Chainid:</span>
-            <input
-              type="text"
-              className="chainid"
-              value={block.chainid}
-              onChange={(event) => handleInputChange(event, "chainid")}
-            />
-          </div>
-        </div>
+        ))}
       </div>
       <div className="buttoncontainer">
         <button className="btn_done" onClick={() => setBlockVis(false)}>

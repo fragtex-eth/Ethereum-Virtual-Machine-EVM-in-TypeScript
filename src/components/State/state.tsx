@@ -1,27 +1,42 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState } from "react";
 import { IconContext } from "react-icons";
 import { IoClose } from "react-icons/io5";
-
+import { AddressData, InputData, StateProps } from "../types";
 import "./state.css";
 
-interface AddressData {
-  balance: string;
-  code: {
-    bin: string;
-  };
-}
+const InputField: React.FC<{
+  placeholder: string;
+  value: string;
+  onChange: (value: string) => void;
+  className?: string;
+}> = ({ placeholder, value, onChange, className }) => (
+  <input
+    type="text"
+    placeholder={placeholder}
+    className={className || "stateInput stateInside"}
+    value={value}
+    onChange={(e) => onChange(e.target.value)}
+  />
+);
 
-interface InputData {
+const AddressDisplay: React.FC<{
   address: string;
-  code: string;
-  balance: string;
-}
-
-interface StateProps {
-  addresses: { [key: string]: AddressData };
-  setAddresses: Dispatch<SetStateAction<{ [key: string]: AddressData }>>;
-  setAddressesVis: Dispatch<SetStateAction<boolean>>;
-}
+  data: AddressData;
+  onRemove: () => void;
+}> = ({ address, data, onRemove }) => (
+  <div className="singleitem">
+    <span className="stateInputFixed">{address}</span>
+    <span className="stateInputFixed stateInside">{data.balance}</span>
+    {data.code.bin && (
+      <span className="stateInputFixed stateInside">{data.code.bin}</span>
+    )}
+    <div className="buttoncontainer buttonremove">
+      <button className="btn_done" onClick={onRemove}>
+        Remove
+      </button>
+    </div>
+  </div>
+);
 
 const State: React.FC<StateProps> = ({
   addresses,
@@ -34,44 +49,27 @@ const State: React.FC<StateProps> = ({
     balance: "",
   });
 
- const handleAdd = () => {
-   // Ethereum address validation
-   const addressValidation = /^0x[a-fA-F0-9]{40}$/;
-   if (!addressValidation.test(inputData.address)) {
-     alert("Address should be 42 characters long and start with 0x");
-     return;
-   }
-   // Balance validation
-   if (isNaN(parseFloat(inputData.balance))) {
-     alert("Balance should be a valid number");
-     return;
-   }
-   // Code validation
-   const codeValidation = /^[a-zA-Z0-9]*$/;
-   if (!codeValidation.test(inputData.code)) {
-     alert("Code should only contain letters and numbers");
-     return;
-   }
+  const handleAdd = () => {
+    const { address, balance, code } = inputData;
 
-   // All validations passed, add address to the state
-   setAddresses((prevState) => ({
-     ...prevState,
-     [inputData.address]: {
-       balance: inputData.balance,
-       code: { bin: inputData.code },
-     },
-   }));
-   setInputData({ address: "", code: "", balance: "" });
-   console.log(addresses);
- };
+    if (!isValidData(address, balance, code)) return;
 
+    setAddresses((prevState) => ({
+      ...prevState,
+      [address]: {
+        balance,
+        code: { bin: code },
+      },
+    }));
+
+    setInputData({ address: "", code: "", balance: "" });
+  };
 
   const handleRemove = (keyToRemove: string) => {
     const newAddresses = { ...addresses };
     delete newAddresses[keyToRemove];
     setAddresses(newAddresses);
   };
-
 
   return (
     <div className="setParameters">
@@ -87,32 +85,24 @@ const State: React.FC<StateProps> = ({
         <div className="row">
           <div className="singleitem">
             <span className="from">Address:</span>
-            <input
-              type="text"
+            <InputField
               placeholder="0x0000000000000000000000000000000000000000"
               className="stateInput stateInputfixed"
               value={inputData.address}
-              onChange={(e) =>
-                setInputData({ ...inputData, address: e.target.value })
+              onChange={(value) =>
+                setInputData({ ...inputData, address: value })
               }
             />
-
-            <input
-              type="text"
+            <InputField
               placeholder="6001606052"
-              className="stateInput stateInside"
               value={inputData.code}
-              onChange={(e) =>
-                setInputData({ ...inputData, code: e.target.value })
-              }
+              onChange={(value) => setInputData({ ...inputData, code: value })}
             />
-            <input
-              type="text"
+            <InputField
               placeholder="100000000"
-              className="stateInput stateInside"
               value={inputData.balance}
-              onChange={(e) =>
-                setInputData({ ...inputData, balance: e.target.value })
+              onChange={(value) =>
+                setInputData({ ...inputData, balance: value })
               }
             />
             <button className="btn_done" onClick={handleAdd}>
@@ -121,30 +111,14 @@ const State: React.FC<StateProps> = ({
           </div>
 
           <div className="singleitem sIDisplay">
-            {Object.entries(addresses).map(([key, value], index) => {
-              const item = value as AddressData;
-              return (
-                <div className="singleitem" key={index}>
-                  <span className="stateInputFixed">{key}</span>{" "}
-                  <span className="stateInputFixed stateInside">
-                    {item.balance}
-                  </span>{" "}
-                  {item.code.bin && (
-                    <span className="stateInputFixed stateInside">
-                      {item.code.bin}
-                    </span>
-                  )}
-                  <div className="buttoncontainer buttonremove">
-                    <button
-                      className="btn_done"
-                      onClick={() => handleRemove(key)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </div>
-              );
-            })}
+            {Object.entries(addresses).map(([key, value], index) => (
+              <AddressDisplay
+                key={index}
+                address={key}
+                data={value as AddressData}
+                onRemove={() => handleRemove(key)}
+              />
+            ))}
           </div>
         </div>
       </div>
@@ -156,5 +130,26 @@ const State: React.FC<StateProps> = ({
     </div>
   );
 };
+
+function isValidData(address: string, balance: string, code: string) {
+  const addressValidation = /^0x[a-fA-F0-9]{40}$/;
+  if (!addressValidation.test(address)) {
+    alert("Address should be 42 characters long and start with 0x");
+    return false;
+  }
+
+  if (isNaN(parseFloat(balance))) {
+    alert("Balance should be a valid number");
+    return false;
+  }
+
+  const codeValidation = /^[a-zA-Z0-9]*$/;
+  if (!codeValidation.test(code)) {
+    alert("Code should only contain letters and numbers");
+    return false;
+  }
+
+  return true;
+}
 
 export default State;

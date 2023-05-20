@@ -28,25 +28,29 @@ function Output({output} : {output: any}) {
   return (
     <div className="output">
       <div className="component">
-        <h2 className="">Stack</h2>
-        <div className="compOut">
-          <div className="containerOut">
-            {output != null && output.stack
-              ? output.stack.map((item: any, index: any) => (
-                  <div className="compElement" key={index}>
-                    <div>
-                      <p className="firstRow">{`${(index + ":").slice(-2)}`}</p>
-                    </div>
-                    <p className="secondRow">{`
+        <div className="compcontainer">
+          <h2 className="">Stack</h2>
+          <div className="compOut">
+            <div className="containerOut">
+              {output != null && output.stack
+                ? output.stack.map((item: any, index: any) => (
+                    <div className="compElement" key={index}>
+                      <div>
+                        <p className="firstRow">{`${(index + ":").slice(
+                          -2
+                        )}`}</p>
+                      </div>
+                      <p className="secondRow">{`
                 0x${("0".repeat(64) + item.toString(16)).slice(-64)}`}</p>
-                  </div>
-                ))
-              : "no output"}
+                    </div>
+                  ))
+                : "no output"}
+            </div>
           </div>
         </div>
       </div>
       <div className="component">
-        <div className="component">
+        <div className="compcontainer">
           <h2 className="">Memory</h2>
           <div className="compOut">
             <div className="containerOut">
@@ -58,31 +62,37 @@ function Output({output} : {output: any}) {
         </div>
       </div>
       <div className="component">
-        <h2 className="">Storage</h2>
-        <div className="compOut">
-          <div className="containerOut">
-            {output != null && output.storage
-              ? output.storage.map((item: any, index: any) => (
-                  <div className="compElement" key={index}>
-                    <div>
-                      <p className="firstRow">{`0x${("00" + index + "0").slice(
-                        -2
-                      )}:`}</p>
-                    </div>
-                    <p className="secondRow">{`
+        <div className="compcontainer">
+          <h2 className="">Storage</h2>
+          <div className="compOut">
+            <div className="containerOut">
+              {output != null && output.storage
+                ? output.storage.map((item: any, index: any) => (
+                    <div className="compElement" key={index}>
+                      <div>
+                        <p className="firstRow">{`0x${(
+                          "00" +
+                          index +
+                          "0"
+                        ).slice(-2)}:`}</p>
+                      </div>
+                      <p className="secondRow">{`
                 0x${("0".repeat(64) + item.toString(16)).slice(-64)}`}</p>
-                  </div>
-                ))
-              : "no storage"}
+                    </div>
+                  ))
+                : "no storage"}
+            </div>
           </div>
         </div>
       </div>
 
       <div className="component">
-        <h2 className="">Return</h2>
-        <div className="compOut retOut">
-          <div className="containerOut containerRet">
-            {output != null && output.return ? output.return : "no return"}
+        <div className="compcontainer">
+          <h2 className="">Return</h2>
+          <div className="compOut retOut">
+            <div className="containerOut containerRet">
+              {output != null && output.return ? output.return : "no return"}
+            </div>
           </div>
         </div>
       </div>

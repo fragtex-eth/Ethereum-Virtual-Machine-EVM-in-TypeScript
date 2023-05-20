@@ -1,11 +1,13 @@
 
 .App{
     box-sizing: border-box;
-    padding: 50px 150px;
+    padding: 50px 50px;
 
 }
 .container{
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 /* Mainarea */
 .bg{

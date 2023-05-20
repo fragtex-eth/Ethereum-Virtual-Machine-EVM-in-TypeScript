@@ -15,6 +15,12 @@ textarea{
     line-height: 23px;
     word-wrap: break-word;
 }
+.Main{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+    max-width: 624px;
+}
 .settings{
     margin-top: 50px;
     display: flex;

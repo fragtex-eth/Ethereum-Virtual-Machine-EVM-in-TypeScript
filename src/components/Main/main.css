@@ -26,7 +26,8 @@ textarea{
 .settings{
     margin-top: 50px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .btn_state{
     all:unset;
@@ -37,4 +38,5 @@ textarea{
     box-shadow: 0px 4px 30px 10px rgba(9, 11, 11, 0.2);
     border-radius: 24px;
     cursor: pointer;
+    margin-bottom: 15px;
 }

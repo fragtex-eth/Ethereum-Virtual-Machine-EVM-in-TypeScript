@@ -6,6 +6,8 @@
 
 .singleopcontainer{
   width: 350px;
+  display: flex;
+    justify-content: center;
 }
 .singleopcode{
     
@@ -20,6 +22,10 @@
 .alice-carousel__wrapper {
   all:unset;
   /* overflow: scroll !important; */
+}
+.alice-carousel{
+display: flex;
+justify-content: center;
 }
 
 .title{

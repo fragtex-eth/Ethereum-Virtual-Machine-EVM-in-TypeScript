@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "JS EVM",
+  "name": "EVM in JS",
   "icons": [
     {
       "src": "favicon.ico",

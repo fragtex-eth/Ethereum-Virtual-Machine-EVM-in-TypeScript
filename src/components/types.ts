@@ -53,6 +53,11 @@ export interface TransactionProps {
   setBlock: Dispatch<SetStateAction<BlockState>>;
   setBlockVis: Dispatch<SetStateAction<boolean>>;
 }
+export interface TransactionPropsState {
+  tx: TxState;
+  setTx: Dispatch<SetStateAction<TxState>>;
+  setTxVis: Dispatch<SetStateAction<boolean>>;
+}
 
 export interface Opcode {
   uint8: string;
